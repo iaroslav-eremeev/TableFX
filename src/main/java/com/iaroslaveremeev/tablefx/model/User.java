@@ -1,5 +1,9 @@
 package com.iaroslaveremeev.tablefx.model;
 
+import com.iaroslaveremeev.tablefx.repository.UserRepository;
+import com.iaroslaveremeev.tablefx.util.Constants;
+
+import java.io.File;
 import java.util.Date;
 import java.util.Objects;
 
@@ -19,6 +23,17 @@ public class User {
     private boolean isSent;
 
     public User() {
+    }
+
+    public User(String name, String mail, int age, String country) {
+        UserRepository userRepository = new UserRepository(new File(Constants.FILENAME));
+        this.id = userRepository.getUsers().size();
+        this.name = name;
+        this.regDate = new Date();
+        this.mail = mail;
+        this.age = age;
+        this.country = country;
+        this.isSent = false;
     }
 
     public int getId() {

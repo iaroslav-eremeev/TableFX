@@ -3,9 +3,10 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="com.iaroslaveremeev.tablefx.MainController">
+<VBox alignment="TOP_CENTER" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iaroslaveremeev.tablefx.MainController">
    <children>
       <MenuBar>
         <menus>
@@ -16,5 +17,6 @@
           </Menu>
         </menus>
       </MenuBar>
+      <TableView fx:id="table" prefHeight="374.0" prefWidth="600.0" />
    </children>
 </VBox>

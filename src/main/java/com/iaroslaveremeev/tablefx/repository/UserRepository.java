@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class UserRepository {
 
@@ -34,5 +35,27 @@ public class UserRepository {
             }
         }
         catch (IOException ignored){};
+    }
+
+    public ArrayList<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(ArrayList<User> users) {
+        this.users = users;
+    }
+
+    public void fill(int number){
+        String[] names = new String[]{"Jack", "Michael", "Mary", "Andrew", "Jane", "Elizabeth", "Nick", "Kate", "Paul", "Margaret"};
+        String[] countries = new String[]{"UK", "USA", "Australia", "New Zealand"};
+        Random random = new Random();
+        for (int i = 0; i < number; i++) {
+            int nameIndex = random.nextInt(names.length);
+            int countryIndex = random.nextInt(countries.length);
+            String userName = names[nameIndex];
+            User user = new User(userName, userName + "@mymail.com", random.nextInt(50 - 18) + 18,
+                    countries[countryIndex]);
+            this.users.add(user);
+        }
     }
 }
