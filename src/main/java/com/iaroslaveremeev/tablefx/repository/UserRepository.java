@@ -26,6 +26,12 @@ public class UserRepository {
         ObjectMapper objectMapper = new ObjectMapper();
         try(BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))){
             this.users = objectMapper.readValue(bufferedReader, new TypeReference<>() {});
+            SendUserIdRepository sendUserIdRepository = new SendUserIdRepository();
+            for (User user : this.users) {
+                if (sendUserIdRepository.userIds.contains(user.getId())) {
+                    user.setSent(true);
+                }
+            }
         }
         catch (IOException ignored){};
     }
