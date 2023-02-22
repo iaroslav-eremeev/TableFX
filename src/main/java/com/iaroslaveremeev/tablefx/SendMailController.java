@@ -17,7 +17,7 @@ public class SendMailController {
 
     public void send(ActionEvent actionEvent) {
         MailSender mailSender = new MailSender("tirsbox@mail.ru",
-                "sZX4g02XLup33dfzzfHe", "eremeev.pt@gmail.com");
+                "", "eremeev.pt@gmail.com");
         mailSender.send(this.mailSubject.getText(), this.messageText.getText());
     }
 }
