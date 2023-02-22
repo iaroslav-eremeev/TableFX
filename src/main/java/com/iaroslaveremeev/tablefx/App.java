@@ -12,7 +12,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("main.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Table FX app");
         stage.setScene(scene);
         stage.show();
@@ -25,11 +25,8 @@ public class App extends Application {
     public static void showAlertWithoutHeaderText(String title, String content, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
-
-        // Header Text: null
         alert.setHeaderText(null);
         alert.setContentText(content);
-
         alert.showAndWait();
     }
 }
