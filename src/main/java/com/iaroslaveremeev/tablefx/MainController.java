@@ -60,7 +60,7 @@ public class MainController {
                 // Filling columns with dates in a certain format
                 regDateCol.setCellFactory(column -> {
                     TableCell<User, Date> cell = new TableCell<User, Date>(){
-                        private SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+                        private SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
                         @Override
                         protected void updateItem(Date item, boolean empty){
                             super.updateItem(item, empty);
@@ -130,9 +130,8 @@ public class MainController {
                                         } else {
                                             btn.setOnAction(event -> {
                                                 MailSender mailSender = new MailSender("tirsbox@mail.ru",
-                                                        "hQGWyu7gc9y4aMVvXu2n", "eremeev.pt@gmail.com");
+                                                        "sZX4g02XLup33dfzzfHe", "eremeev.pt@gmail.com");
                                                 mailSender.send("Table FX project test", "It works!");
-
                                             });
                                             setGraphic(btn);
                                             setText(null);
