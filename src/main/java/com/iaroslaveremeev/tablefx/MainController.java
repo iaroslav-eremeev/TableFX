@@ -129,9 +129,9 @@ public class MainController {
                                             setText(null);
                                         } else {
                                             btn.setOnAction(event -> {
-                                                MailSender mailSender = new MailSender("tirsbox@mail.ru",
-                                                        "sZX4g02XLup33dfzzfHe", "eremeev.pt@gmail.com");
-                                                mailSender.send("Table FX project test", "It works!");
+                                                try {
+                                                    App.openWindow("mail.fxml", null);
+                                                } catch (IOException ignored) {}
                                             });
                                             setGraphic(btn);
                                             setText(null);
