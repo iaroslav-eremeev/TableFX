@@ -25,9 +25,8 @@ public class User {
     public User() {
     }
 
-    public User(String name, String mail, int age, String country) {
-        UserRepository userRepository = new UserRepository(new File(Constants.FILENAME));
-        this.id = userRepository.getUsers().size();
+    public User(int id, String name, String mail, int age, String country) {
+        this.id = id;
         this.name = name;
         this.regDate = new Date();
         this.mail = mail;

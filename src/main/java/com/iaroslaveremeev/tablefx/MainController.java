@@ -1,5 +1,7 @@
 package com.iaroslaveremeev.tablefx;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iaroslaveremeev.tablefx.model.User;
 import com.iaroslaveremeev.tablefx.repository.UserRepository;
 import javafx.collections.FXCollections;
@@ -10,8 +12,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class MainController {
@@ -63,6 +65,7 @@ public class MainController {
                                             setGraphic(null);
                                             setText(null);
                                         } else {
+                                            btn.setSelected(table.getItems().get(getIndex()).isSent());
                                             btn.setDisable(true);
                                             btn.setStyle("-fx-opacity: 1;");
                                             setGraphic(btn);
@@ -74,14 +77,39 @@ public class MainController {
                             }
                         };
 
+                Callback<TableColumn<User, Button>, TableCell<User, Button>> cellFactoryButton =
+                        new Callback<TableColumn<User, Button>, TableCell<User, Button>>() {
+                            @Override
+                            public TableCell call(final TableColumn<User, Button> param) {
+                                final TableCell<User, Button> cell = new TableCell<User, Button>() {
+                                    Button btn = new Button("Send message");
+                                    public void sendMessage(ActionEvent actionEventButton){
+                                        Alert alert = new Alert(Alert.AlertType.INFORMATION, "It works");
+                                        alert.show();
+                                    }
+                                };
+                                return cell;
+                            }
+                        };
 
-                //TODO 2 коллбека - за галочки и за отправку
-                table.getColumns().addAll(idCol, nameCol, regDateCol, mailCol, ageCol, countryCol);
+                table.getColumns().addAll(isSentCol, idCol, nameCol, regDateCol, mailCol, ageCol, countryCol, buttonCol);
             }
             else throw new FileNotFoundException();
         } catch (FileNotFoundException e) {
             App.showAlertWithoutHeaderText("Error!", "You didn't chose any file", Alert.AlertType.ERROR);
         }
 
+    }
+
+    public void generateUsers(ActionEvent actionEvent) {
+        UserRepository userRepository = new UserRepository(new File("send.json"));
+        userRepository.fill(10);
+        System.out.println(userRepository.getUsers());
+        ObjectMapper objectMapper = new ObjectMapper();
+        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("users.json"))){
+            objectMapper.writeValue(bufferedWriter, userRepository.getUsers());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

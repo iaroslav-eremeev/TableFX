@@ -5,12 +5,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-/*
- * Добавьте зависимости из указанных ссылок для использования этого класса:
- * https://mvnrepository.com/artifact/javax.mail/javax.mail-api
- * https://mvnrepository.com/artifact/com.sun.mail/javax.mail
- */
-
 /**
  * @author Kotov Kirill
  */

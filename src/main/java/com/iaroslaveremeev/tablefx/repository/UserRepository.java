@@ -53,7 +53,7 @@ public class UserRepository {
             int nameIndex = random.nextInt(names.length);
             int countryIndex = random.nextInt(countries.length);
             String userName = names[nameIndex];
-            User user = new User(userName, userName + "@mymail.com", random.nextInt(50 - 18) + 18,
+            User user = new User(i + 1, userName, userName + random.nextInt(100) + "@mymail.com", random.nextInt(50 - 18) + 18,
                     countries[countryIndex]);
             this.users.add(user);
         }
