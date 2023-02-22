@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iaroslaveremeev.tablefx.model.User;
 import com.iaroslaveremeev.tablefx.repository.UserRepository;
+import com.iaroslaveremeev.tablefx.util.MailSender;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,16 +39,14 @@ public class MainController {
                 TableColumn<User, String> mailCol = new TableColumn<User, String>("E-mail");
                 TableColumn<User, Integer> ageCol = new TableColumn<User, Integer>("Age");
                 TableColumn<User, String> countryCol = new TableColumn<User, String>("Country");
-                TableColumn<User, Button> buttonCol = new TableColumn<User, Button>("Action");
+                TableColumn<User, String> buttonCol = new TableColumn<User, String>("Action");
 
-                isSentCol.setCellValueFactory(new PropertyValueFactory<User, Boolean>("isSent"));
                 idCol.setCellValueFactory(new PropertyValueFactory<User, Integer>("id"));
                 nameCol.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
                 regDateCol.setCellValueFactory(new PropertyValueFactory<User, Date>("regDate"));
                 mailCol.setCellValueFactory(new PropertyValueFactory<User, String>("mail"));
                 ageCol.setCellValueFactory(new PropertyValueFactory<User, Integer>("age"));
                 countryCol.setCellValueFactory(new PropertyValueFactory<User, String>("country"));
-                buttonCol.setCellValueFactory(new PropertyValueFactory<User, Button>("action"));
 
                 UserRepository userRepository = new UserRepository(file);
                 table.setItems(FXCollections.observableArrayList(userRepository.getUsers()));
@@ -57,7 +56,7 @@ public class MainController {
                             @Override
                             public TableCell call(final TableColumn<User, Boolean> param) {
                                 final TableCell<User, Boolean> cell = new TableCell<User, Boolean>() {
-                                    CheckBox btn = new CheckBox("Sent");
+                                    CheckBox btn = new CheckBox();
                                     @Override
                                     public void updateItem(Boolean item, boolean empty) {
                                         super.updateItem(item, empty);
@@ -77,20 +76,41 @@ public class MainController {
                             }
                         };
 
-                Callback<TableColumn<User, Button>, TableCell<User, Button>> cellFactoryButton =
-                        new Callback<TableColumn<User, Button>, TableCell<User, Button>>() {
+                isSentCol.setCellFactory(cellFactoryIsSent);
+
+                Callback<TableColumn<User, String>, TableCell<User, String>> cellFactoryButton =
+                        new Callback<TableColumn<User, String>, TableCell<User, String>>() {
                             @Override
-                            public TableCell call(final TableColumn<User, Button> param) {
-                                final TableCell<User, Button> cell = new TableCell<User, Button>() {
-                                    Button btn = new Button("Send message");
-                                    public void sendMessage(ActionEvent actionEventButton){
-                                        Alert alert = new Alert(Alert.AlertType.INFORMATION, "It works");
-                                        alert.show();
+                            public TableCell call(final TableColumn<User, String> param) {
+                                final TableCell<User, String> cell = new TableCell<User, String>() {
+                                    final Button btn = new Button("Send message");
+
+                                    {
+                                        btn.getStyleClass().add("primary");
+                                    }
+
+                                    @Override
+                                    public void updateItem(String item, boolean empty) {
+                                        super.updateItem(item, empty);
+                                        if (empty) {
+                                            setGraphic(null);
+                                            setText(null);
+                                        } else {
+                                            btn.setOnAction(event -> {
+                                                MailSender mailSender = new MailSender("tirsbox@mail.ru",
+                                                        "hQGWyu7gc9y4aMVvXu2n", "eremeev.pt@gmail.com");
+                                                mailSender.send("Table FX project test", "It works!");
+
+                                            });
+                                            setGraphic(btn);
+                                            setText(null);
+                                        }
                                     }
                                 };
                                 return cell;
                             }
                         };
+                buttonCol.setCellFactory(cellFactoryButton);
 
                 table.getColumns().addAll(isSentCol, idCol, nameCol, regDateCol, mailCol, ageCol, countryCol, buttonCol);
             }
