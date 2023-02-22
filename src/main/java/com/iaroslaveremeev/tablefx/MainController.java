@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.*;
@@ -130,7 +131,9 @@ public class MainController {
                                         } else {
                                             btn.setOnAction(event -> {
                                                 try {
-                                                    App.openWindow("mail.fxml", null);
+                                                    Stage sendMailStage = App.openWindow("mail.fxml", null);
+                                                    assert sendMailStage != null;
+                                                    sendMailStage.show();
                                                 } catch (IOException ignored) {}
                                             });
                                             setGraphic(btn);
