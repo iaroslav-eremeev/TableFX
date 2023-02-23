@@ -9,7 +9,6 @@ import java.util.prefs.Preferences;
 
 public class SendMailController {
 
-    //TODO Добавить вычитку электронной почты из таблицы! (Preferences)
     //TODO Проверить textArea - при табуляции уходит в бесконечность вправо
     public TextField mailSubject;
     public TextArea messageText;
@@ -19,7 +18,7 @@ public class SendMailController {
     }
     public void send(ActionEvent actionEvent) {
         MailSender mailSender = new MailSender("tirsbox@mail.ru",
-                this.password.getText(), Preferences.userRoot().get("mail", null));
+                this.password.getText(), Preferences.userRoot().node("mail").get("mail", null));
         mailSender.send(this.mailSubject.getText(), this.messageText.getText());
     }
 }

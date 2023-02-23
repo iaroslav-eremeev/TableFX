@@ -134,6 +134,7 @@ public class MainController {
                                         } else {
                                             btn.setOnAction(event -> {
                                                 try {
+                                                    prefs = Preferences.userRoot().node("mail");
                                                     prefs.put("mail", getTableRow().getItem().getMail());
                                                     Stage sendMailStage = App.openWindow("mail.fxml", null);
                                                     assert sendMailStage != null;
