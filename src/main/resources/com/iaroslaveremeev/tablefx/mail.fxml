@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iaroslaveremeev.tablefx.SendMailController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iaroslaveremeev.tablefx.SendMailController">
    <children>
       <Label text="Mail subject">
          <font>
@@ -21,13 +21,22 @@
             <Font size="20.0" />
          </font>
          <VBox.margin>
-            <Insets top="20.0" />
+            <Insets top="10.0" />
          </VBox.margin>
       </Label>
       <TextArea fx:id="messageText" maxWidth="400.0" prefHeight="200.0" prefWidth="400.0" />
+      <Label text="Password">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </Label>
+      <TextField fx:id="password" maxWidth="400.0" prefWidth="400.0" />
       <Button mnemonicParsing="false" onAction="#send" text="Send mail">
          <VBox.margin>
-            <Insets top="20.0" />
+            <Insets top="10.0" />
          </VBox.margin>
          <font>
             <Font size="14.0" />

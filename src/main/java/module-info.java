@@ -3,6 +3,7 @@ module com.iaroslaveremeev.tablefx {
     requires javafx.fxml;
     requires com.fasterxml.jackson.databind;
     requires javax.mail.api;
+    requires java.prefs;
 
     opens com.iaroslaveremeev.tablefx to javafx.fxml;
     opens com.iaroslaveremeev.tablefx.model to javafx.base;

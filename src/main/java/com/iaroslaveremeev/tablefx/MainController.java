@@ -20,10 +20,13 @@ import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.prefs.Preferences;
 
 public class MainController {
 
     public TableView<User> table;
+
+    public Preferences prefs;
 
     @FXML
     public void openUsers(ActionEvent actionEvent) {
@@ -131,6 +134,7 @@ public class MainController {
                                         } else {
                                             btn.setOnAction(event -> {
                                                 try {
+                                                    prefs.put("mail", getTableRow().getItem().getMail());
                                                     Stage sendMailStage = App.openWindow("mail.fxml", null);
                                                     assert sendMailStage != null;
                                                     sendMailStage.show();
