@@ -11,6 +11,7 @@ import java.util.prefs.Preferences;
 public class SendMailController {
 
     //TODO Проверить textArea - при табуляции уходит в бесконечность вправо
+    //TODO Галочка не ставится
     public TextField mailSubject;
     public TextArea messageText;
     public TextField password;
@@ -20,6 +21,7 @@ public class SendMailController {
     public void send(ActionEvent actionEvent) {
         MailSender mailSender = new MailSender("tirsbox@mail.ru",
                 this.password.getText(), Preferences.userRoot().node("mail").get("mail", null));
+        /*mailSender.send(this.mailSubject.getText(), this.messageText.getText());*/
         boolean sentSuccessfully = mailSender.send(this.mailSubject.getText(), this.messageText.getText());
         if (sentSuccessfully) {
             Preferences.userRoot().node("mail").putBoolean("sent", true);
