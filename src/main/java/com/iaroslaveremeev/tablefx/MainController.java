@@ -136,6 +136,7 @@ public class MainController {
                                                 try {
                                                     prefs = Preferences.userRoot().node("mail");
                                                     prefs.put("mail", getTableRow().getItem().getMail());
+                                                    prefs.putBoolean("sent", getTableRow().getItem().isSent());
                                                     Stage sendMailStage = App.openWindow("mail.fxml", null);
                                                     assert sendMailStage != null;
                                                     sendMailStage.show();
