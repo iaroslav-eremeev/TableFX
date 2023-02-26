@@ -36,6 +36,7 @@ public class MainController {
                 initializeTable(userRepository);
                 Stage passwordInput = App.openWindow("password.fxml", null);
                 assert passwordInput != null;
+                passwordInput.setTitle("Password input");
                 passwordInput.showAndWait();
             }
             else throw new FileNotFoundException();
@@ -154,6 +155,7 @@ public class MainController {
                                             prefs.putBoolean("sent", getTableRow().getItem().isSent());
                                             Stage sendMailStage = App.openWindow("mail.fxml", null);
                                             assert sendMailStage != null;
+                                            sendMailStage.setTitle("Send mail to the chosen user");
                                             sendMailStage.showAndWait();
                                             // Updating sent status in user repository
                                             if (Preferences.userRoot().node("mail").getBoolean("sent", true)){
