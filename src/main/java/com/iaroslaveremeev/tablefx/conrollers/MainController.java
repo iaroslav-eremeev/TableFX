@@ -1,7 +1,8 @@
-package com.iaroslaveremeev.tablefx;
+package com.iaroslaveremeev.tablefx.conrollers;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.iaroslaveremeev.tablefx.App;
 import com.iaroslaveremeev.tablefx.model.User;
 import com.iaroslaveremeev.tablefx.repository.UserRepository;
 import com.iaroslaveremeev.tablefx.util.MailSender;
@@ -36,12 +37,17 @@ public class MainController {
         File file = fileChooser.showOpenDialog(null);
         try  {
             if(file != null){
+                Stage passwordInput = App.openWindow("password.fxml", null);
+                assert passwordInput != null;
+                passwordInput.showAndWait();
                 UserRepository userRepository = new UserRepository(file);
                 initializeTable(userRepository);
             }
             else throw new FileNotFoundException();
         } catch (FileNotFoundException e) {
             App.showAlertWithoutHeaderText("Error!", "You didn't chose any file", Alert.AlertType.ERROR);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

@@ -1,5 +1,6 @@
 package com.iaroslaveremeev.tablefx;
 
+import com.iaroslaveremeev.tablefx.conrollers.ControllerData;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

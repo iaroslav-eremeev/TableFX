@@ -1,4 +1,4 @@
-package com.iaroslaveremeev.tablefx;
+package com.iaroslaveremeev.tablefx.conrollers;
 
 import java.io.IOException;
 
