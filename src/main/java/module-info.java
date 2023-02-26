@@ -9,4 +9,5 @@ module com.iaroslaveremeev.tablefx {
     opens com.iaroslaveremeev.tablefx.model to javafx.base;
     exports com.iaroslaveremeev.tablefx;
     exports com.iaroslaveremeev.tablefx.model to com.fasterxml.jackson.databind;
+    exports com.iaroslaveremeev.tablefx.repository to com.fasterxml.jackson.databind;
 }
