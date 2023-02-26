@@ -2,7 +2,6 @@ package com.iaroslaveremeev.tablefx.conrollers;
 
 import com.iaroslaveremeev.tablefx.util.MailSender;
 import javafx.event.ActionEvent;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;

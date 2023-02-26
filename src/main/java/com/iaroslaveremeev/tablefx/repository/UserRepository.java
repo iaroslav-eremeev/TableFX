@@ -3,7 +3,6 @@ package com.iaroslaveremeev.tablefx.repository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iaroslaveremeev.tablefx.model.User;
-import com.iaroslaveremeev.tablefx.util.Constants;
 
 import java.io.BufferedReader;
 import java.io.File;

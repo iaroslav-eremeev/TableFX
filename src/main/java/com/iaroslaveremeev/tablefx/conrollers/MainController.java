@@ -1,11 +1,9 @@
 package com.iaroslaveremeev.tablefx.conrollers;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iaroslaveremeev.tablefx.App;
 import com.iaroslaveremeev.tablefx.model.User;
 import com.iaroslaveremeev.tablefx.repository.UserRepository;
-import com.iaroslaveremeev.tablefx.util.MailSender;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,10 +14,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.*;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatterBuilder;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.prefs.Preferences;
 
@@ -37,11 +32,11 @@ public class MainController {
         File file = fileChooser.showOpenDialog(null);
         try  {
             if(file != null){
+                UserRepository userRepository = new UserRepository(file);
+                initializeTable(userRepository);
                 Stage passwordInput = App.openWindow("password.fxml", null);
                 assert passwordInput != null;
                 passwordInput.showAndWait();
-                UserRepository userRepository = new UserRepository(file);
-                initializeTable(userRepository);
             }
             else throw new FileNotFoundException();
         } catch (FileNotFoundException e) {
