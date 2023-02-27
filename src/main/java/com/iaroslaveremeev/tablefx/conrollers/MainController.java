@@ -26,7 +26,7 @@ public class MainController {
     @FXML
     public void openUsers(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(new File("C:\\Users\\tirsb\\IdeaProjects\\JavaEE\\TableFX"));
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(
                 "JSON files", "*.json", "*.JSON"));
         File file = fileChooser.showOpenDialog(null);
